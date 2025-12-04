@@ -34,13 +34,7 @@ END
 
     SET @NewReviewId = SCOPE_IDENTITY();
 
-    SELECT @NewAverage = AVG(CAST(Rating AS DECIMAL(3,2)))
-    FROM Reviews
-    WHERE BookId = @BookId AND IsActive = 1;
-
-    UPDATE Books
-    SET AverageRating = @NewAverage
-    WHERE BookId = @BookId;
+   
 
     IF EXISTS (SELECT 1 FROM UserActivity WHERE UserId = @UserId AND BookId = @BookId)
     BEGIN
